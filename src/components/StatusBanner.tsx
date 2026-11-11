@@ -8,20 +8,20 @@ interface StatusBannerProps {
 export function StatusBanner({ status, iterations }: StatusBannerProps) {
     if (status === "optimal") {
         return (
-        <p className="rounded-md border border-green-300 bg-green-50 px-4 py-3 text-sm font-medium text-green-800">
+        <p className="border border-neutral-400 bg-neutral-100 px-4 py-3 text-sm font-medium text-black">
             Optimal solution found · {iterations} {iterations === 1 ? "iteration" : "iterations"}
         </p>
         );
     }
     if (status === "unbounded") {
         return (
-        <p className="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm font-medium text-amber-800">
+        <p className="border border-neutral-400 bg-neutral-100 px-4 py-3 text-sm font-medium text-black">
             The problem is infeasible. · Number of iterations: {iterations}
         </p>
         );
     }
     return (
-        <p className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-800">
+        <p className="border-2 border-black bg-white px-4 py-3 text-sm font-medium text-black">
         Iteration limit reached without convergence — please report this case.
         </p>
     );

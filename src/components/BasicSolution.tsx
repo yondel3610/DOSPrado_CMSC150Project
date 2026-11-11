@@ -13,18 +13,15 @@ export function BasicSolution({ values, columnLabels }: BasicSolutionProps) {
         .filter((entry) => entry.value !== 0);
 
     if (entries.length === 0) {
-        return <p className="text-sm text-slate-500">Every variable is nonbasic (all zero).</p>;
+        return <p className="text-sm text-black">Every variable is nonbasic (all zero).</p>;
     }
     return (
-        <div className="flex flex-wrap gap-2">
+        <ul className="list-disc columns-2 gap-8 pl-5 font-mono text-sm sm:columns-3 md:columns-4">
         {entries.map((entry) => (
-            <span
-            key={entry.label}
-            className="rounded-md border border-slate-300 bg-slate-50 px-2 py-1 font-mono text-xs"
-            >
+            <li key={entry.label}>
             {entry.label} = {formatCell(entry.value)}
-            </span>
+            </li>
         ))}
-        </div>
+        </ul>
     );
 }

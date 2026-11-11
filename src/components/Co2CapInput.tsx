@@ -10,7 +10,7 @@ interface Co2CapInputProps {
 export function Co2CapInput({ enabled, value, onToggle, onChange }: Co2CapInputProps) {
     return (
         <section className="space-y-2">
-        <h2 className="text-sm font-semibold text-slate-700">CO₂ cap</h2>
+        <h2 className="text-sm font-semibold text-black">CO₂ cap</h2>
         <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
             <input
             type="checkbox"
@@ -28,9 +28,9 @@ export function Co2CapInput({ enabled, value, onToggle, onChange }: Co2CapInputP
             value={value}
             placeholder="e.g. 165000"
             onChange={(e) => onChange(e.target.value)}
-            className="w-40 rounded-md border border-slate-300 px-3 py-2 text-sm disabled:bg-slate-100 disabled:text-slate-400"
+            className="w-40 border border-neutral-400 px-3 py-2 text-sm disabled:bg-neutral-100 disabled:text-black"
             />
-            <span className="text-sm text-slate-500">t/day</span>
+            <span className="text-sm text-black">t/day</span>
         </div>
         </section>
     );

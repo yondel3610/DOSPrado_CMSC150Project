@@ -11,7 +11,7 @@ import { TEST_CASE_PRESETS } from "./tabs/presets";
 type TabId = "results" | "tableau";
 
 const presetButton =
-  "rounded-full border border-slate-300 px-3 py-1.5 text-xs font-medium hover:bg-slate-100";
+  "border border-neutral-400 px-3 py-1.5 text-xs font-medium hover:bg-neutral-100";
 
 export default function App() {
   // Inputs
@@ -53,15 +53,12 @@ export default function App() {
   return (
     <main className="mx-auto max-w-5xl space-y-6 px-4 py-6">
       <header className="space-y-1">
-        <h1 className="text-2xl font-bold text-slate-900">Luzon Grid Dispatch &amp; Price Simulator</h1>
-        <p className="text-sm text-slate-600">
-          CMSC 150 Final Project · cheapest one-day dispatch and the price of electricity per block
-        </p>
+        <h1 className="text-2xl font-bold text-slate-900">Luzon Grid Dispatch Simulator</h1>
       </header>
 
-      <section className="space-y-4 rounded-xl border border-slate-300 bg-white p-4 shadow-sm">
+      <section className="space-y-4 border border-neutral-400 bg-white p-4">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xs font-semibold text-slate-500">Load test case:</span>
+          <span className="text-xs font-semibold text-black">Load test case:</span>
           {TEST_CASE_PRESETS.map((preset) => (
             <button
               key={preset.id}
@@ -91,7 +88,7 @@ export default function App() {
         {error !== null && (
           <p
             role="alert"
-            className="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm font-medium text-red-700"
+            className="border-2 border-black bg-white px-4 py-3 text-sm font-medium text-black"
           >
             {error}
           </p>
@@ -100,7 +97,7 @@ export default function App() {
         <button
           type="button"
           onClick={handleSolve}
-          className="w-full rounded-md bg-blue-600 px-4 py-2.5 font-semibold text-white hover:bg-blue-700"
+          className="w-full bg-black px-4 py-2.5 font-semibold text-white hover:bg-neutral-800"
         >
           Start Solving
         </button>
@@ -108,7 +105,7 @@ export default function App() {
 
       {outcome !== null && (
         <section className="space-y-3">
-          <nav className="flex gap-1 border-b border-slate-300">
+          <nav className="flex gap-1 border-b border-neutral-400">
             {(["results", "tableau"] as TabId[]).map((tab) => (
               <button
                 key={tab}
@@ -116,8 +113,8 @@ export default function App() {
                 onClick={() => setActiveTab(tab)}
                 className={
                   activeTab === tab
-                    ? "-mb-px rounded-t-md border-x border-t border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-blue-700"
-                    : "px-4 py-2 text-sm text-slate-600 hover:text-slate-900"
+                    ? "-mb-px border-x border-t border-neutral-400 bg-white px-4 py-2 text-sm font-semibold text-black"
+                    : "px-4 py-2 text-sm text-black hover:bg-neutral-100"
                 }
               >
                 {tab === "results" ? "Results" : "Simplex Tableau"}

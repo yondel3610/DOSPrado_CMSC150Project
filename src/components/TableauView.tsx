@@ -14,15 +14,15 @@ interface TableauViewProps {
 
 export function TableauView({ tableau, columnLabels, rowLabels, highlight }: TableauViewProps) {
     return (
-        <div className="max-h-[70vh] overflow-auto rounded-lg border border-slate-300">
+        <div className="max-h-[70vh] overflow-auto border border-neutral-400">
         <table className="w-max border-collapse text-xs tabular-nums">
             <thead>
             <tr>
-                <th className="sticky left-0 top-0 z-30 border-b border-r bg-slate-100 px-2 py-1" />
+                <th className="sticky left-0 top-0 z-30 border-b border-r bg-neutral-100 px-2 py-1" />
                 {columnLabels.map((label) => (
                 <th
                     key={label}
-                    className="sticky top-0 z-20 border-b border-r bg-slate-100 px-2 py-1 font-semibold"
+                    className="sticky top-0 z-20 border-b border-r bg-neutral-100 px-2 py-1 font-semibold"
                 >
                     {label}
                 </th>
@@ -31,8 +31,8 @@ export function TableauView({ tableau, columnLabels, rowLabels, highlight }: Tab
             </thead>
             <tbody>
             {tableau.map((row, i) => (
-                <tr key={i} className="odd:bg-white even:bg-slate-50">
-                <th className="sticky left-0 z-10 border-b border-r bg-slate-100 px-2 py-1 font-semibold">
+                <tr key={i} className="odd:bg-white even:bg-neutral-50">
+                <th className="sticky left-0 z-10 border-b border-r bg-neutral-100 px-2 py-1 font-semibold">
                     {rowLabels[i]}
                 </th>
                 {row.map((value, j) => {
