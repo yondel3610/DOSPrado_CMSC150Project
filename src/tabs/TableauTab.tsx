@@ -5,12 +5,14 @@ import type { SolveOutcome } from "../lib/solve";
 import { BasicSolution } from "../components/BasicSolution";
 import { StatusBanner } from "../components/StatusBanner";
 import { TableauView } from "../components/TableauView";
+import { BLOCKS } from "../lib/data";
+import { formatMW, formatPeso } from "../lib/format";
 
 const navButton =
     "rounded-md border border-slate-300 px-3 py-1.5 text-sm font-medium hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent";
 
 export function TableauTab({ outcome }: { outcome: SolveOutcome }) {
-    const { dual, result } = outcome;
+    const { dual, result, primal, extracted } = outcome;
     const last = result.history.length - 1; // == result.iterations for every run
     const [k, setK] = useState(0);
 
@@ -23,6 +25,7 @@ export function TableauTab({ outcome }: { outcome: SolveOutcome }) {
 
     const goTo = (value: number) => setK(Math.min(last, Math.max(0, Math.round(value))));
     const snapshot = result.history[Math.min(k, last)];
+    const showFinal = k === last && extracted.status === "optimal";
     const rowLabels = [...Array.from({ length: dual.numVars }, (_, j) => `x${j + 1}`), "Z"];
 
     return (
@@ -94,6 +97,37 @@ export function TableauTab({ outcome }: { outcome: SolveOutcome }) {
             columnLabels={dual.columnLabels.slice(0, dual.numConstraints + dual.numVars)}
             />
         </section>
+
+        {showFinal && (
+            <section className="space-y-3 rounded-xl border border-green-300 bg-green-50 p-4">
+            <h2 className="text-sm font-semibold text-green-900">
+                Final solution · iteration {result.iterations}
+            </h2>
+            <p className="text-sm text-green-900">
+                Value of Z: <span className="text-lg font-bold tabular-nums">{formatPeso(extracted.Z!)}</span>
+            </p>
+            <div className="flex flex-wrap gap-2">
+                {primal.groups.flatMap((group, gi) =>
+                BLOCKS.map((b, t) => ({
+                    label: `${group.name} ${b.label}`,
+                    value: extracted.dispatch[gi * BLOCKS.length + t],
+                })),
+                )
+                .filter((entry) => Math.abs(entry.value) >= 0.005)
+                .map((entry) => (
+                    <span
+                    key={entry.label}
+                    className="rounded-md border border-green-300 bg-white px-2 py-1 font-mono text-xs"
+                    >
+                    {entry.label} = {formatMW(entry.value)} MW
+                    </span>
+                ))}
+            </div>
+            <p className="text-xs text-green-800">
+                Plants not listed produce 0 MW. The full table is in the Results tab.
+            </p>
+            </section>
+        )}
         </div>
     );
 }
