@@ -10,3 +10,10 @@ export function formatCell(value: number): string {
 export function formatPeso(value: number): string {
     return `₱${value.toLocaleString("en-PH", { maximumFractionDigits: 2 })}`;
 }
+
+// power in MW, rounded to 2 decimal places, with -0 normalized to 0
+export function formatMW(value: number): string {
+    // normalize -0 / tiny float noise (e.g. -1e-12) so the table never shows "-0.00"
+    const v = Math.abs(value) < 0.005 ? 0 : value;
+    return v.toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
