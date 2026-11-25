@@ -9,28 +9,30 @@ interface Co2CapInputProps {
 
 export function Co2CapInput({ enabled, value, onToggle, onChange }: Co2CapInputProps) {
     return (
-        <section className="space-y-2">
-        <h2 className="text-sm font-semibold text-black">CO₂ cap</h2>
-        <label className="flex w-fit cursor-pointer items-center gap-2 text-sm">
+        <section>
+        <h2 className="panel-title">CO₂ cap</h2>
+        <div className="space-y-2 p-3">
+            <label className="flex w-fit cursor-pointer items-center gap-2">
             <input
-            type="checkbox"
-            checked={enabled}
-            onChange={(e) => onToggle(e.target.checked)}
-            className="h-4 w-4"
+                type="checkbox"
+                checked={enabled}
+                onChange={(e) => onToggle(e.target.checked)}
+                className="h-3.5 w-3.5 accent-black"
             />
             <span>Limit daily CO₂</span>
-        </label>
-        <div className="flex items-center gap-2">
+            </label>
+            <div className="flex items-center gap-2">
             <input
-            type="number"
-            min={0}
-            disabled={!enabled}
-            value={value}
-            placeholder="e.g. 165000"
-            onChange={(e) => onChange(e.target.value)}
-            className="w-40 border border-neutral-400 px-3 py-2 text-sm disabled:bg-neutral-100 disabled:text-black"
+                type="number"
+                min={0}
+                disabled={!enabled}
+                value={value}
+                placeholder="e.g. 165000"
+                onChange={(e) => onChange(e.target.value)}
+                className="field w-32 text-right"
             />
-            <span className="text-sm text-black">t/day</span>
+            <span className="text-dim">t/day</span>
+            </div>
         </div>
         </section>
     );

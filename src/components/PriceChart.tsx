@@ -15,7 +15,7 @@ export function PriceChart({ prices }: { prices: number[] }) {
         <div className="h-72 w-full">
         <ResponsiveContainer width="100%" height="100%">
             <BarChart data={data} margin={{ top: 8, right: 16, bottom: 8, left: 8 }}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--line)" />
             <XAxis dataKey="block" />
             <YAxis
                 width={64}

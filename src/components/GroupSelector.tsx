@@ -8,39 +8,35 @@ interface GroupSelectorProps {
     onCheckAll: () => void;
     onReset: () => void;
 }
-const smallButton =
-    "border border-neutral-400 px-3 py-1.5 text-xs font-medium hover:bg-neutral-100";
-
 export function GroupSelector({ selectedKeys, onToggle, onCheckAll, onReset }: GroupSelectorProps) {
     return (
-        <section className="space-y-2">
-        <div className="flex items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold text-black">Plant groups</h2>
-            <div className="flex gap-2">
-            <button type="button" onClick={onCheckAll} className={smallButton}>
+        <section>
+        <div className="panel-title flex items-center justify-between">
+            <h2>Plant groups</h2>
+            <div className="flex gap-1">
+            <button type="button" onClick={onCheckAll} className="btn">
                 Check All
             </button>
-            <button type="button" onClick={onReset} className={smallButton}>
+            <button type="button" onClick={onReset} className="btn">
                 Reset
             </button>
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <ul>
             {PLANT_GROUPS.map((group) => (
-            <label
-                key={group.key}
-                className="flex cursor-pointer items-center gap-2 border border-neutral-400 px-3 py-2 text-sm hover:bg-neutral-50"
-            >
+            <li key={group.key} className="border-b border-line last:border-b-0">
+                <label className="flex cursor-pointer items-center gap-2 px-3 py-1.5 hover:bg-zebra">
                 <input
-                type="checkbox"
-                checked={selectedKeys.includes(group.key)}
-                onChange={() => onToggle(group.key)}
-                className="h-4 w-4"
+                    type="checkbox"
+                    checked={selectedKeys.includes(group.key)}
+                    onChange={() => onToggle(group.key)}
+                    className="h-3.5 w-3.5 accent-black"
                 />
                 <span>{group.name}</span>
-            </label>
+                </label>
+            </li>
             ))}
-        </div>
+        </ul>
         </section>
     );
 }
