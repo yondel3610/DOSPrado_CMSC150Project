@@ -67,7 +67,7 @@ export function TableauTab({ outcome }: { outcome: SolveOutcome }) {
             value={k}
             onChange={(e) => goTo(Number(e.target.value))}
             aria-label="Iteration"
-            className="w-full accent-black"
+            className="w-full accent-ink"
             />
 
             <div className="flex flex-wrap items-baseline justify-between gap-1">

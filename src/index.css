@@ -18,8 +18,28 @@
     --dim: #555555;
     --zero: #b0b0b0;
     --mark: #c4c4c4;
+    --cross: #e4e4e4;
     --btn: #111111;
     --btn-ink: #ffffff;
+  --coal: #595959; /* chart series that would be too dark on the dark theme */
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    --bg: #121212;
+    --surface: #1b1b1b;
+    --head: #2b2b2b;
+    --zebra: #222222;
+    --line: #4a4a4a;
+    --ink: #ececec;
+    --dim: #a3a3a3;
+    --zero: #6a6a6a;
+    --mark: #4d4d4d;
+    --cross: #2e2e2e;
+    --btn: #ececec;
+    --btn-ink: #111111;
+    --coal: #9a9a9a;
+    color-scheme: dark;
 }
 
 @theme inline {
@@ -31,6 +51,7 @@
     --color-ink: var(--ink);
     --color-dim: var(--dim);
     --color-mark: var(--mark);
+  --color-cross: var(--cross);
     --font-sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
     --font-mono: ui-monospace, "Cascadia Mono", "SF Mono", Consolas, "Liberation Mono", monospace;
 }

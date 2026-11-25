@@ -17,7 +17,7 @@ export function Co2CapInput({ enabled, value, onToggle, onChange }: Co2CapInputP
                 type="checkbox"
                 checked={enabled}
                 onChange={(e) => onToggle(e.target.checked)}
-                className="h-3.5 w-3.5 accent-black"
+                className="h-3.5 w-3.5 accent-ink"
             />
             <span>Limit daily CO₂</span>
             </label>

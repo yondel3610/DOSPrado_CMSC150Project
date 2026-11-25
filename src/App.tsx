@@ -4,6 +4,7 @@ import { validateInput } from "./lib/validate";
 import { runSolve, type SolveOutcome } from "./lib/solve";
 import { Co2CapInput } from "./components/Co2CapInput";
 import { GroupSelector } from "./components/GroupSelector";
+import { ThemeToggle } from "./components/ThemeToggle";
 import { ResultsTab } from "./tabs/ResultsTab";
 import { TableauTab } from "./tabs/TableauTab";
 import { TEST_CASE_PRESETS } from "./tabs/presets";
@@ -73,8 +74,9 @@ export default function App() {
 
   return (
     <div className="flex min-h-screen flex-col bg-app text-ink md:h-screen">
-      <header className="shrink-0 border-b border-line bg-head px-3 py-1.5">
+      <header className="flex shrink-0 items-center justify-between border-b border-line bg-head px-3 py-1.5">
         <h1 className="text-[13px] font-bold">Luzon Grid Dispatch Simulator</h1>
+        <ThemeToggle />
       </header>
 
       <div className="flex flex-1 flex-col md:min-h-0 md:flex-row">

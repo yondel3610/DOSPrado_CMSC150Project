@@ -5,7 +5,7 @@ import type { SolveOutcome } from "../lib/solve";
 import { BLOCKS, HOURS_PER_BLOCK } from "../lib/data";
 import { formatMW, formatPeso } from "../lib/format";
 import { StatusBanner } from "../components/StatusBanner";
-import { PriceChart } from "../components/PriceChart";
+import { DispatchChart } from "../components/DispatchChart";
 
 const card = "border border-line bg-surface p-3";
 const th = "border border-line bg-head px-2 py-1 text-right font-semibold";
@@ -98,7 +98,19 @@ export function ResultsTab({ outcome }: { outcome: SolveOutcome }) {
                 </tbody>
                 </table>
             </div>
-            <PriceChart prices={extracted.pricesPerBlock} />
+            </section>
+        )}
+
+        {optimal && (
+            <section className={`${card} space-y-3`}>
+            <h2 className="text-xs font-bold uppercase tracking-wide">
+                Dispatch (MW) and price (₱/MWh) per block
+            </h2>
+            <DispatchChart
+                groups={primal.groups}
+                dispatch={extracted.dispatch}
+                prices={extracted.pricesPerBlock}
+            />
             </section>
         )}
 

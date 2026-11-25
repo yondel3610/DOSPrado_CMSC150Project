@@ -30,7 +30,7 @@ export function GroupSelector({ selectedKeys, onToggle, onCheckAll, onReset }: G
                     type="checkbox"
                     checked={selectedKeys.includes(group.key)}
                     onChange={() => onToggle(group.key)}
-                    className="h-3.5 w-3.5 accent-black"
+                    className="h-3.5 w-3.5 accent-ink"
                 />
                 <span>{group.name}</span>
                 </label>
