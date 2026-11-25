@@ -1,6 +1,16 @@
+// Simplex method on a tableau using Gauss-Jordan pivoting, translated from the Exer 5 lab code
+// 
 import type { Pivot, SimplexResult, Tableau, TableauSnapshot } from './types'
 
 const MAX_ITERATIONS = 10_000; // safety net; the largest test case needs 39
+
+// Runs the simplex method until it stops and records every tableau along the way.
+//  
+// Each iteration picks the pivot column (choosePivotColumn), picks the pivot row with the minimum
+// ratio test (choosePivotRow), then pivots (pivot). The run stops only when:
+//  - no objective-row entry is negative: the status is "optimal"
+//  - the pivot column has no positive entry: "unbounded"
+//  - MAX_ITERATIONS pivots have been made: "max-iterations" 
 
 export function solveSimplex(initialTableau: Tableau): SimplexResult {
     const t = initialTableau.map((row) => [...row]); // never mutate the caller's tableau
@@ -33,7 +43,8 @@ export function solveSimplex(initialTableau: Tableau): SimplexResult {
     return { status: "optimal", iterations, history, basicSolution: last.basicSolution, Z: last.Z };
 }
 
-// Most negative entry in the objective row, columns 0..m-3 (Z and Solution excluded)
+// Chooses the pivot column: the most negative entry in the objective row.
+// Only the variable and slack columns are considered; the last two columns (Z and Solution) are skipped
 function choosePivotColumn(t: Tableau): number {
     const objective = t[t.length - 1];
     let pc = -1;
@@ -48,6 +59,8 @@ function choosePivotColumn(t: Tableau): number {
 }
 
 // Most negative ratio of rhs / pivot col, rows 0..n-2 (objective row excluded)
+// Chooses the pivot row with the minimum ratio test: among the constraint rows whose entry in the 
+// pivot column is positive, the one with the smallest (right-hand side) / (pivot column entry).
 function choosePivotRow(t: Tableau, pc: number): number {
     const rhs = t[0].length - 1;
     let pr = -1;
@@ -65,7 +78,7 @@ function choosePivotRow(t: Tableau, pc: number): number {
 }
 
 // normalize the pivot_row then Gauss-Jordan on the pivot col
-// fromm ebery other row (from exer5)
+// fromm every other row (from exer5)
 function pivot(t: Tableau, pr: number, pc: number): void {
     const pe = t[pr][pc];
     const normalized = t[pr].map((v) => v / pe);
@@ -109,7 +122,8 @@ function extractBasicSolution(t: Tableau): number[] {
     return solution;
 }
 
-// snapshot 
+// Captures the current state as a history entry
+// The tableau is copied so later pivots, which modify it in place, do not change the saved snapshot
 function snapshotOf(t: Tableau, iteration: number, pivotCell?: Pivot): TableauSnapshot {
     return {
         iteration,

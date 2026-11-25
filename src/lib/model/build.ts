@@ -9,9 +9,9 @@ import {
 
 export interface SolveOptions {
     /** Keys of the selected plant groups. */
-    selected: string[];
-    co2CapOn: boolean;
-    co2Cap: number;
+    selected: string[]; // keys of the selected plant groups
+    co2CapOn: boolean; // Whether the CO₂ constraint is included
+    co2Cap: number; // Daily CO₂ cap in t/day. Only used when co2CapOn is true
 }
 
 export interface PrimalModel {
