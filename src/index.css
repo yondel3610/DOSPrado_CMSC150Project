@@ -1,2 +1,7 @@
 /* tailwind css for the project */
 @import "tailwindcss";
+
+/* zero entries in the tableau are dimmed so the non-zero values stand out  */
+.cell-zero {
+    color: #b0b0b0;
+}

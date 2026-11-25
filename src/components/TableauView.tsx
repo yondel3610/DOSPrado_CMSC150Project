@@ -37,12 +37,16 @@ export function TableauView({ tableau, columnLabels, rowLabels, highlight }: Tab
                 </th>
                 {row.map((value, j) => {
                     const highlighted = highlight !== undefined && highlight.row === i && highlight.col === j;
+                    const text = formatCell(value);
+                    const isZero = text === "0" && !highlighted
+                    // 0 gets grayed outt to highlight other values
+                    // sir binabasa mo ba talaga commits ko
                     return (
                     <td
                         key={j}
-                        className={`border-b border-r px-2 py-1 text-right ${highlighted ? "bg-amber-200 font-semibold" : ""}`}
+                        className={`border-b border-r px-2 py-1 text-right ${highlighted ? "bg-amber-200 font-semibold" : ""} ${isZero ? "cell-zero" : ""}`}
                     >
-                        {formatCell(value)}
+                        {text}
                     </td>
                     );
                 })}
